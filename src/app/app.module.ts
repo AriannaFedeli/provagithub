@@ -13,6 +13,10 @@ import {RouterModule, Routes} from '@angular/router';
 import {routing} from './app.routes';
 import {GoodEditComponent} from './good-edit.component';
 import {GoodNewComponent} from './good-new.component';
+
+
+//ciao
+
 @NgModule({
   imports:      [ BrowserModule, CommonModule,DataTableModule,FormsModule, HttpModule, routing],
   declarations: [ AppComponent,GoodComponent, DataFilterPipe, GoodEditComponent,GoodNewComponent],

@@ -44,12 +44,4 @@ export class GoodComponent implements OnInit {
     public toInt(num: string) {
         return +num;
     }
-
-
-
-    public sortByWordLength = (a: any) => {
-        return a.body.length;
-    }
-
-
 }

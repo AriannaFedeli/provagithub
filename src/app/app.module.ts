@@ -8,14 +8,10 @@ import { GoodService } from "./good.service";
 import { GoodComponent } from './good.component';
 import { DataFilterPipe } from './data-filter.pipe';
 import { AppComponent }   from './app.component';
-//import { DemoModule }   from './good.module';
 import {RouterModule, Routes} from '@angular/router';
 import {routing} from './app.routes';
 import {GoodEditComponent} from './good-edit.component';
 import {GoodNewComponent} from './good-new.component';
-
-
-//ciao
 
 @NgModule({
   imports:      [ BrowserModule, CommonModule,DataTableModule,FormsModule, HttpModule, routing],
@@ -23,5 +19,6 @@ import {GoodNewComponent} from './good-new.component';
   bootstrap:    [ AppComponent ],
   providers: [GoodService]
 })
+
 
 export class AppModule { }

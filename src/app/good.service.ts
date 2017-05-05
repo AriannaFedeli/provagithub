@@ -13,7 +13,8 @@ export class GoodService {
 
   private headers = new Headers({ 'Content-Type': 'application/json' });
   //richiamo al servizio Good del server
-  private baseUrl: string = "https://jsonplaceholder.typicode.com/posts";
+  private baseUrl: string = "http://localhost:8000/goods";
+  
 
   constructor(private http: Http) { }
 
@@ -23,7 +24,15 @@ export class GoodService {
       .map((res: Response) => { return res.json(); })
       .catch(this.handleError);
   }
+  
+  
 
+
+  getgoodsordinati(): Observable<Good[]> {
+    return this.http.get(this.baseUrl + "?field=" + "field")
+      .map((res: Response) => { return res.json(); })
+      .catch(this.handleError);
+  }
 
   getGoodId(id: number): Observable<Good> {
     return this.http.get(this.baseUrl + '/' + id)
@@ -82,37 +91,22 @@ export class GoodService {
       .catch(this.handleError);
   }
 
-
- /* private handleError(error: Response | any) {
-    // In a real world app, you might use a remote logging infrastructure
-    let errMsg: string;
-    if (error instanceof Response) {
-      const quantity = error.json() || '';
-      const err = quantity.error || JSON.stringify(quantity);
-      errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-    } else {
-      errMsg = error.message ? error.message : error.toString();
-    }
-    console.error(errMsg);
-    return Observable.throw(errMsg);
-  }*/
-  
   private handleError(error: any) {
-  var applicationError = error.headers.get('Application-Error');
-  var serverError = error.json();
-  var modelStateErrors: string = '';
-  
-  if (!serverError.type) {
-  console.log(serverError);
-  for (var key in serverError) {
-  if (serverError[key])
-  modelStateErrors += serverError[key] + '\n';
+    var applicationError = error.headers.get('Application-Error');
+    var serverError = error.json();
+    var modelStateErrors: string = '';
+
+    if (!serverError.type) {
+      console.log(serverError);
+      for (var key in serverError) {
+        if (serverError[key])
+          modelStateErrors += serverError[key] + '\n';
+      }
+    }
+
+    modelStateErrors = modelStateErrors = '' ? null : modelStateErrors;
+
+    return Observable.throw(applicationError || modelStateErrors || 'Server error');
   }
-  }
-  
-  modelStateErrors = modelStateErrors = '' ? null : modelStateErrors;
-  
-  return Observable.throw(applicationError || modelStateErrors || 'Server error');
-  } 
-  
+
 }

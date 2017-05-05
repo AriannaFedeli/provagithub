@@ -11,6 +11,7 @@ import 'rxjs/add/operator/toPromise';
 import { GoodService } from "./good.service";
 import { Observer } from 'rxjs/Observer'
 
+
 @Component({
     moduleId: module.id,
     selector: 'good',
@@ -18,11 +19,11 @@ import { Observer } from 'rxjs/Observer'
     providers: [GoodService]
 })
 
-
 export class GoodComponent implements OnInit {
 
     public goods: Good[]; //array di goods
     data:Good[]; //array di  lavoro
+    dataordinati:Good[];
     public filterQuery = "";
     public rowsOnPage = 10;
     public sortBy = "id";
@@ -39,9 +40,21 @@ export class GoodComponent implements OnInit {
                 console.log('Failed to load Goods' + error);
             });
         console.log("Success to load Goods");
+   
+  
     }
 
     public toInt(num: string) {
         return +num;
     }
+
+public onclick(){
+    this.GoodService.getgoodsordinati()
+            .subscribe(
+            (goods: Good[]) => { this.data = goods; },
+            error => {
+                console.log('Failed to load Goods' + error);
+            });
+        console.log("Success to load Goodsordinati");
+}
 }

@@ -40,12 +40,39 @@ export class GoodComponent implements OnInit {
                 console.log('Failed to load Goods' + error);
             });
         console.log("Success to load Goods");*/
+ this.getGoods();
+  }
 
+	getGoods(): void {
+	  this.GoodService.getGoods().then(heroes => this.goods = heroes);
+  }
+
+
+ add(description, quantity,price): void {
+    this.GoodService.createGood(description, quantity, price)
+      .then(hero => {
+        this.goods.push(hero);
+        this.selectedgoods = null;
+      });
+  }
+
+  delete(hero: Good): void {
+	  this.GoodService
+      .delete(hero.id)
+      .then(() => {
+	      this.goods = this.goods.filter(h => h !== hero);
+	      if(this.selectedgoods === hero) {
+	        this.selectedgoods = null;
+        }
+      });
+  }
+
+
+/*
         this.GoodService.getGoods()
       .then(goods => this.goods  = goods);
-   
+   */
   
-    }
 
     public toInt(num: string) {
         return +num;

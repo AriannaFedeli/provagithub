@@ -21,34 +21,36 @@ import { Observer } from 'rxjs/Observer'
 
 export class GoodComponent implements OnInit {
 
-    public goods: Good[] = []; //array di goods
+    public goods: Good[]; //array di goods
     data:Good[]; //array di  lavoro
     dataordinati:Good[];
     public filterQuery = "";
     public rowsOnPage = 10;
     public sortBy = "id";
     public sortOrder = "asc";
-
   selectedgoods: Good;
     constructor(private GoodService: GoodService) {}
 
     ngOnInit() {
-        /*this.GoodService.getGoods()
-            .subscribe(
+        this.GoodService.getGoods()
+            .then(
             (goods: Good[]) => { this.data = goods; },
             error => {
                 console.log('Failed to load Goods' + error);
             });
-        console.log("Success to load Goods");*/
- this.getGoods();
+        console.log("Success to load Goods");
+    }
+    
+/* this.getGoods();
   }
 
 	getGoods(): void {
-	  this.GoodService.getGoods().then(heroes => this.goods = heroes);
+	  this.GoodService.getGoods().then(goods => this.goods = goods);
   }
 
+*/
 
- add(description, quantity,price): void {
+ add(description, quantity, price): void {
     this.GoodService.createGood(description, quantity, price)
       .then(good=> {
         this.goods.push(good);
@@ -77,6 +79,10 @@ export class GoodComponent implements OnInit {
     public toInt(num: string) {
         return +num;
     }
+
+    onSelect(good: Good): void {
+		this.selectedgoods = good;
+	} 
 /*
 public onclick(){
     this.GoodService.getgoodsordinati()

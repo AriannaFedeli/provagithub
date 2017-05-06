@@ -27,14 +27,15 @@ export class GoodEditComponent implements OnInit {
   ngOnInit() {
     this.id = +this.route.snapshot.params['id'];
 
-    this.postsService.getGoodId(this.id).subscribe((good: Good) => {
+    this.postsService.getGoodId(this.id).then((good: Good) => {
 
-      console.log('Good caricato correttamente');
+  
       this.id = good.id;
       this.description = good.description;
       this.price = good.price;
       this.quantity = good.quantity;
 
+    console.log('Good caricato correttamente');
     },
       error => {
         console.log('errore nel caricamento del good' + error);
@@ -51,7 +52,7 @@ export class GoodEditComponent implements OnInit {
     }
 
     this.postsService.updateGood(this.good)
-      .subscribe(() => {
+      .then(() => {
         this.goodedited = true;
         console.log('good modificato con successo');
 

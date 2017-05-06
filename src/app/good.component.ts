@@ -50,18 +50,18 @@ export class GoodComponent implements OnInit {
 
  add(description, quantity,price): void {
     this.GoodService.createGood(description, quantity, price)
-      .then(hero => {
-        this.goods.push(hero);
+      .then(good=> {
+        this.goods.push(good);
         this.selectedgoods = null;
       });
   }
 
-  delete(hero: Good): void {
+  delete(good: Good): void {
 	  this.GoodService
-      .delete(hero.id)
+      .delete(good.id)
       .then(() => {
-	      this.goods = this.goods.filter(h => h !== hero);
-	      if(this.selectedgoods === hero) {
+	      this.goods = this.goods.filter(h => h !== good);
+	      if(this.selectedgoods === good) {
 	        this.selectedgoods = null;
         }
       });

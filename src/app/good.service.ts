@@ -44,17 +44,17 @@ getGoods(): Promise<Good[]> {
       .map((res: Response) => { return res.json(); })
       .catch(this.handleError);
   }*/
-getgGoodId(id: number): Promise<Good> {
+getGoodId(id: number): Promise<Good> {
     return this.getGoods()
       .then(goods=> goods.find(good => good.id === id))
   }
-
+/*
   getGoodId(id: number): Observable<Good> {
        const url = `${this.baseUrl}/${id}`;
     return this.http.get(url)
       .map((res: Response) => { return res.json(); })
       .catch(this.handleError);
-  }
+  }*/
 
   /*
     //metodo CRUD create
@@ -73,7 +73,7 @@ getgGoodId(id: number): Promise<Good> {
 
 
 
-  createGood(description: string, quantity: number, price: number): Promise<Good> {
+  createGood(description: string, quantity: number, price: number):Promise<Good> {
 
     return this.http
     .post(this.baseUrl, JSON.stringify({

@@ -12,20 +12,21 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
 </head>
 
 <body>
+
+
+
 
     <div class="container">
         <h1>Edit GOOD :</h1>
         <h5>{{description}}</h5>
         <form #form="ngForm" class="col s12" novalidate>
             <div class="row">
-                <div class="input-field col s6 m6">
-                    <label class="active" for="id">ID</label>
-                    <input id="id" type="text" class="form-control validate" name="id" [(ngModel)]="id">
-
-                </div>
+                
                 <div class="input-field col s6 m6">
                     <label class="active" for="description">Description</label>
                     <input id="description" type="text" class="form-control validate" name="description" [(ngModel)]="description">
@@ -43,6 +44,7 @@
 
                 </div>
             </div>
+
 
 
             <br>
